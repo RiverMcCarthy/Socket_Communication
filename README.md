@@ -1,17 +1,20 @@
 # Server-Client File Backup using Socket Communication
 
 ## Introduction 
-The aim of this project is to create a programme designed to back up file modifications to a remote (or local) server. The estimated time devoted to this project is around 4 hours.
+The aim of this project is to create a programme designed to back up file modifications to a remote (or local) server. The estimated time devoted to this project is around 4-5 hours.
+
+![image](./image1.png)
+
+![image](./image2.png)
 
 ## Getting Started
 Install the below dependencies to run the projects on a local device
 1. Dependencies (Python Libraries)
     * tqdm
     * shutil
-    * filecmp
     * watchdog
 2. Essential Logic
-    * The client runs a file monitor script to check for any changes to files in the source directory. The filename and filesize is then sent to the server and then the file is sent and saved to the specified destination directory. A local directory called [server_version](./server_version) is created and a copy of the file is saved and used for future comparison to check if file modifications are different to the server version. This prevents redundant file backup and allows the client to check which version is in the server's destination directory.
+    * The client runs a file monitor script to check for any changes to files in the source directory. The filename and filesize is then sent to the server and then the file is sent and saved to the specified destination directory. A local directory called [server_version](./server_version) is created and a copy of the file is saved and used for future comparison to check if file modifications are different to the server version. This prevents redundant file backup and allows the client to check which version is in the server's destination directory. Originally filecomp.cmp was used to compare files but this was seen to be ineffective. Comparing the binary files was also found to be ineffective due to file formatting issues. The files were therefore compared by directly equating lines. If one or more lines are the same as the remote version then the file will not be sent.
 
 ## Build and Test
 1. Open a new terminal and set up the server
@@ -37,7 +40,7 @@ Navigate to repository directory and run client.py where SOURCE_DIR is the desir
 
 ``` $ python3 dev/client.py data/source localhost```
 
-4. Modify [test.docx](./data/source/test.docx) to test programme operation.
+4. Modify [test.docx](./data/source/test.txt) to test programme operation.
 
 ## Scripts
 ### Python Files
