@@ -21,7 +21,7 @@ Install the below dependencies to run the projects on a local device
 
 Navigate to repository directory and run server.py where DESTINATION_DIR is the desired destination directory and IP is the server IP address.
 
-``` $ cd Pexip_Socket_Communication ```
+``` $ cd Socket_Communication ```
 
 ``` $ python3 dev/server.py DESTINATION_DIR IP``` for MacOS or ``` $ python dev/server.py DESTINATION_DIR IP``` for Windows or Linux
 
@@ -30,7 +30,7 @@ Navigate to repository directory and run server.py where DESTINATION_DIR is the 
 
 Navigate to repository directory and run client.py where SOURCE_DIR is the desired source directory and IP is the server IP address.
 
-``` $ cd Pexip_Socket_Communication ```
+``` $ cd Socket_Communication ```
 
 ``` $ python3 dev/client.py SOURCE_DIR IP``` for MacOS or ``` $ python dev/client.py SOURCE_DIR IP``` for Windows or Linux
 
