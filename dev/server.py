@@ -1,10 +1,6 @@
 import socket
 import sys
-import io
-import os
-import time
 import tqdm
-import shutil
 
 def start_server():
     # get destination directory path and ip address from command line argument

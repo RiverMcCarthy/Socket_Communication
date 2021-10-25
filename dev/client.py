@@ -5,7 +5,6 @@ from types import CellType
 import file_monitor
 import tqdm
 import shutil
-from difflib import SequenceMatcher
     
 # get source directory path and ip address from command line argument
 path = sys.argv[1]

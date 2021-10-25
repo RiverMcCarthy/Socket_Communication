@@ -10,17 +10,18 @@ server side interface example
 
 ## Getting Started
 Install the below dependencies to run the projects on a local device
-1. Dependencies (Python Libraries)
-    * tqdm
-    * shutil
-    * watchdog
+1. Dependencies
+    * [Python](https://www.python.org/downloads/)
+    * [tqdm](https://github.com/tqdm/tqdm)
+    * [shutil](https://docs.python.org/3/library/shutil.html)
+    * [watchdog](https://pypi.org/project/watchdog/)
 2. Essential Logic
     * The client runs a file monitor script to check for any changes to files in the source directory. The filename and filesize is then sent to the server and then the file is sent and saved to the specified destination directory. A local directory called [server_version](./server_version) is created and a copy of the file is saved and used for future comparison to check if file modifications are different to the server version. This prevents redundant file backup and allows the client to check which version is in the server's destination directory. Originally filecomp.cmp was used to compare files but this was seen to be ineffective. Comparing the binary files was also found to be ineffective due to file formatting issues. The files were therefore compared by directly equating lines. If one or more lines are the same as the remote version then the file will not be sent.
 
 ## Build and Test
 1. Open a new terminal and set up the server
 
-Navigate to repository directory and run server.py where DESTINATION_DIR is the desired destination directory and IP is the server IP address.
+Navigate to repository directory and run [server.py](./dev/server.py) where DESTINATION_DIR is the desired destination directory and IP is the server IP address.
 
 ``` $ cd Socket_Communication ```
 
@@ -29,7 +30,7 @@ Navigate to repository directory and run server.py where DESTINATION_DIR is the 
 
 2. Open a second terminal and set up the client
 
-Navigate to repository directory and run client.py where SOURCE_DIR is the desired source directory and IP is the server IP address.
+Navigate to repository directory and run [client.py](./dev/client.py) where SOURCE_DIR is the desired source directory and IP is the server IP address.
 
 ``` $ cd Socket_Communication ```
 
@@ -41,7 +42,7 @@ Navigate to repository directory and run client.py where SOURCE_DIR is the desir
 
 ``` $ python3 dev/client.py data/source localhost```
 
-4. Modify [test.docx](./data/source/test.txt) to test programme operation.
+4. Modify [test.txt](./data/source/test.txt) to test programme operation.
 
 ## Scripts
 ### Python Files
