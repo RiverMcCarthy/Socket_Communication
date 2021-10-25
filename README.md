@@ -12,6 +12,7 @@ server side interface example
 Install the below dependencies to run the projects on a local device
 1. Dependencies
     * [Python](https://www.python.org/downloads/)
+    * socket
     * [tqdm](https://github.com/tqdm/tqdm)
     * [shutil](https://docs.python.org/3/library/shutil.html)
     * [watchdog](https://pypi.org/project/watchdog/)

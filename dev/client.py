@@ -1,7 +1,6 @@
 import socket
 import sys
 import os
-from types import CellType
 import file_monitor
 import tqdm
 import shutil
