@@ -11,6 +11,7 @@ class Handler(FileSystemEventHandler):
         FileSystemEventHandler.__init__(self)
     # if a file is modified then compare files
     def on_modified(self, event):
+        # ignore directory modifications
         if event.is_directory:
             pass
         else:
@@ -25,8 +26,10 @@ def monitor_directory(path):
     observer = Observer()
     # run handler
     event_handler = Handler()
+    # monitor directory tree
     observer.schedule(event_handler, path=path, recursive=True)
     observer.start()
+    # monitor once every second
     try:
         while True:
             time.sleep(1)

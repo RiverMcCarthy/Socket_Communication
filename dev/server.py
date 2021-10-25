@@ -7,9 +7,12 @@ import tqdm
 import shutil
 
 def start_server():
+    # get destination directory path and ip address from command line argument
     path = sys.argv[1]
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     ip = "127.0.0.1" if sys.argv[2] == "localhost" else sys.argv[2]
+    # define socket
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # define the buffer size to be expected
     buffer_size = 1024
     print(f"destination directory: {path}, IP: {ip}")
     port = 10000
@@ -26,7 +29,6 @@ def start_server():
             # split string by "<>" to get filename and filesize
             filename, filesize = bytes_received.split("<>")
             filesize = int(filesize)
-            # print(f"filename: {filename}, filesize: {filesize}")
             with tqdm.tqdm(range(filesize), f"Receiving {filename}", unit="B", unit_scale=True, unit_divisor=buffer_size) as progress:
                 with open(path+"/"+filename, "wb") as f:
                     while True:
@@ -43,13 +45,9 @@ def start_server():
                         progress.update(len(bytes_read))
                     f.close
         except Exception as e:
-
             # print error details for debugging
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            print("socket issue: server has been closed")
-            print(exc_type, fname, exc_tb.tb_lineno)
             print(f"error: {e}")
+            # close socket connection
             server_socket.close
 
     # close socket connection

@@ -7,6 +7,7 @@ import tqdm
 import shutil
 from difflib import SequenceMatcher
     
+# get source directory path and ip address from command line argument
 path = sys.argv[1]
 server_ip = "127.0.0.1" if sys.argv[2] == "localhost" else sys.argv[2]
 
@@ -15,6 +16,7 @@ def send_file(path):
     filesize = os.path.getsize(path)
     # define port
     port = 10000
+    # set buffer size
     buffer_size = 1024
     client_socket = socket.socket()
     client_socket.connect((server_ip, port))
@@ -52,6 +54,7 @@ def compare_files(path_mod):
             path_comp = os.path.join(comparison_dir, name_comp)
             # read text of modified and comparison files
             with open(path_mod, "r", errors='replace') as file_mod, open(path_comp, "r", errors='replace') as file_comp:
+                # compare line by line to search for a match
                 for line_mod in file_mod.readlines():
                     for line_comp in file_comp.readlines():
                         if line_comp == line_mod:

@@ -3,8 +3,9 @@
 ## Introduction 
 The aim of this project is to create a programme designed to back up file modifications to a remote (or local) server. The estimated time devoted to this project is around 4-5 hours.
 
+client side interface example
 ![image](./image1.png)
-
+server side interface example
 ![image](./image2.png)
 
 ## Getting Started
@@ -51,5 +52,5 @@ Navigate to repository directory and run client.py where SOURCE_DIR is the desir
 
 ## To Do
 * Optimise file comparison to adjust similarity threshold
-The file comparison currently only returns a boolean of the file similarity which is problematic as this prevents interigation of file modifications. With more time, these issues could be resolved by using an alternative library to assess the similarity of the file contents.
+The file comparison currently only compares lines to check for file duplication. File comparison criteria can be integrated to fit the use case of the application.
 * Add optional features to allow force backup requests
