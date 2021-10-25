@@ -53,5 +53,5 @@ Navigate to repository directory and run [client.py](./dev/client.py) where SOUR
 
 ## To Do
 * Optimise file comparison to adjust similarity threshold
-The file comparison currently only compares lines to check for file duplication. File comparison criteria can be integrated to fit the use case of the application.
+* The file comparison currently only compares lines to check for file duplication but the criteria could be modified to fit the use case of the application.
 * Add optional features to allow force backup requests
