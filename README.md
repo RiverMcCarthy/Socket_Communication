@@ -47,7 +47,7 @@ and then
 ``` $ python3 dev/client.py data/source localhost 100```
 in another terminal.
 
-4. Modify [test.txt](./data/source/test.txt) to test programme operation.
+4. Modify [test.txt](./data/source/test.txt) and then save to test programme operation.
 
 5. Alter the similarity threshold to preference
 
