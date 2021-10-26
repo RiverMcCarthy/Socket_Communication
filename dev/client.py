@@ -8,6 +8,7 @@ import shutil
 # get source directory path and ip address from command line argument
 path = sys.argv[1]
 server_ip = "127.0.0.1" if sys.argv[2] == "localhost" else sys.argv[2]
+sim_thresh = float(sys.argv[3])
 
 def send_file(path):
     filename = os.path.basename(path)
@@ -45,28 +46,37 @@ def send_file(path):
 def compare_files(path_mod):
     # comparison directory
     comparison_dir = (os.getcwd()+"/server_version")
-    similar = False
+    # number of lines in modified file which are also in 
+    same = 0
+    num_lines = 0
     # iterate through comparison files of same name and compare contents
     for name_comp in os.listdir(comparison_dir):
         if name_comp == os.path.basename(path_mod):
             path_comp = os.path.join(comparison_dir, name_comp)
             # read text of modified and comparison files
             with open(path_mod, "r", errors='replace') as file_mod, open(path_comp, "r", errors='replace') as file_comp:
-                # compare line by line to search for a match
-                for line_mod in file_mod.readlines():
-                    for line_comp in file_comp.readlines():
-                        if line_comp == line_mod:
-                            print(f"file is similar to backed up version")
-                            similar = True
-                            file_mod.close
-                            file_comp.close
-                            break
-    # send file to server if no lines of modified file are the same as lines of comparison file
-    if similar==False:
+                # compare lines of modified file with comparison file contents
+                lines_mod = file_mod.readlines()
+                num_lines = len(lines_mod)
+                lines_comp = file_comp.readlines()
+                for line_mod in lines_mod:
+                    if line_mod in lines_comp:
+                        same+=1
+                file_mod.close
+                file_comp.close
+    # if there is contents to the file
+    if (num_lines)>0:
+        similarity = 100*same/(num_lines)
+    else:
+        similarity = 0
+    # check if the similarity is less than the threshold
+    if similarity<sim_thresh:
         send_file(path_mod)
+    else:
+        print(f"file is similar to backed up version")
 
 
 if __name__ == "__main__":
     # get path from argument and run watchdog monitor
-    print(f"source directory: {path}, ip: {server_ip}")
+    print(f"source directory: {path}, ip: {server_ip}, similarity threshold: {sim_thresh}")
     file_monitor.monitor_directory(path)
